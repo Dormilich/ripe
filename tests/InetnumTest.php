@@ -1,7 +1,9 @@
 <?php
 
+use Dormilich\Http\NetworkInterface;
 use Dormilich\Http\RangeInterface;
 use Dormilich\RIPE\Inetnum;
+use Dormilich\RIPE\Inet6num;
 use PHPUnit\Framework\TestCase;
 
 class InetnumTest extends TestCase
@@ -31,10 +33,21 @@ class InetnumTest extends TestCase
         $this->assertSame( '198.51.100.35 - 198.51.100.193', $obj->get( 'inetnum' ) );
     }
 
-    public function testIPRangeFromArguments()
+    public function testIpRangeFromArguments()
     {
         $obj = new Inetnum( '198.51.100.193', '198.51.100.35' );
 
         $this->assertSame( '198.51.100.35 - 198.51.100.193', $obj->get( 'inetnum' ) );
+    }
+
+    public function testIp6NetworkObject()
+    {
+        $net = $this->createMock( NetworkInterface::class );
+        $net->method( 'getCIDR' )->willReturn( '2001:db8:c87a:bc17/64' );
+        $net->method( '__toString' )->willReturn( '2001:db8:c87a:bc17/64' );
+
+        $obj = new Inet6num( $net );
+
+        $this->assertSame( '2001:db8:c87a:bc17/64', $obj->getHandle() );
     }
 }

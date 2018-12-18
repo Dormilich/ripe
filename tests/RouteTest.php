@@ -56,11 +56,25 @@ class RouteTest extends TestCase
         $this->assertFalse( $route[ 'route' ]->isDefined() );
     }
 
+    public function testRoute4IncompleteHandle()
+    {
+        $route = new RIPE\Route( 'AS65536' );
+
+        $this->assertNull( $route->getHandle() );
+    }
+
+    public function testRoute4GetHandle()
+    {
+        $route = new RIPE\Route( 'AS65536', '192.0.2.0/24' );
+
+        $this->assertSame( '192.0.2.0/24AS65536', $route->getHandle() );
+    }
+
     public function testRoute6WithHandle()
     {
-        $route = new RIPE\Route( '2001:db8:bec0:f94f/64AS65536' );
+        $route = new RIPE\Route6( '2001:db8:bec0:f94f/64AS65536' );
 
-        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route' ) );
+        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route6' ) );
         $this->assertSame( 'AS65536', $route->get( 'origin' ) );
     }
 
@@ -69,25 +83,39 @@ class RouteTest extends TestCase
      */
     public function testRoute6WithSeparateStrings( $a, $b )
     {
-        $route = new RIPE\Route( $a, $b );
+        $route = new RIPE\Route6( $a, $b );
 
-        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route' ) );
+        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route6' ) );
         $this->assertSame( 'AS65536', $route->get( 'origin' ) );
     }
 
     public function testRoute6WithoutOrigin()
     {
-        $route = new RIPE\Route( '2001:db8:bec0:f94f/64' );
+        $route = new RIPE\Route6( '2001:db8:bec0:f94f/64' );
 
-        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route' ) );
+        $this->assertSame( '2001:db8:bec0:f94f/64', $route->get( 'route6' ) );
         $this->assertFalse( $route[ 'origin' ]->isDefined() );
     }
 
     public function testRoute6WithoutRoute()
     {
-        $route = new RIPE\Route( 'AS65536' );
+        $route = new RIPE\Route6( 'AS65536' );
 
         $this->assertSame( 'AS65536', $route->get( 'origin' ) );
-        $this->assertFalse( $route[ 'route' ]->isDefined() );
+        $this->assertFalse( $route[ 'route6' ]->isDefined() );
+    }
+
+    public function testRoute6IncompleteHandle()
+    {
+        $route = new RIPE\Route6( 'AS65536' );
+
+        $this->assertNull( $route->getHandle() );
+    }
+
+    public function testRoute6GetHandle()
+    {
+        $route = new RIPE\Route( 'AS65536', '2001:db8:bec0:f94f/64' );
+
+        $this->assertSame( '2001:db8:bec0:f94f/64AS65536', $route->getHandle() );
     }
 }
