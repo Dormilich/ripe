@@ -54,4 +54,12 @@ class Person extends AbstractObject
         $this->generated( 'created', Attr::SINGLE );
         $this->generated( 'last-modified', Attr::SINGLE );
     }
+
+    /**
+     * @inheritDoc
+     */
+    protected function keysFromInput( $value )
+    {
+        return [ 'nic-hdl' => $value ];
+    }
 }

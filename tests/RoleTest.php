@@ -9,13 +9,15 @@ class RoleTest extends TestCase
     {
         $obj = new RIPE\Role;
 
-        $this->assertSame( 'AUTO-1', $obj->get( 'role' ) );
+        $this->assertNull( $obj->get( 'role' ) );
+        $this->assertSame( 'AUTO-1', $obj->getHandle() );
     }
 
     public function testPersonDefaultName()
     {
         $obj = new RIPE\Person;
 
-        $this->assertSame( 'AUTO-1', $obj->get( 'person' ) );
+        $this->assertNull( $obj->get( 'person' ) );
+        $this->assertSame( 'AUTO-1', $obj->getHandle() );
     }
 }
