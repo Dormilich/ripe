@@ -16,21 +16,31 @@
         }
     ],
     "require": {
-        "php": "^5.6 || ^7.0",
+        "php": "^8.1",
+        "ext-dom": "*",
         "ext-json": "*",
+        "ext-libxml": "*",
+        "ext-mbstring": "*",
         "ext-pcre": "*",
-        "dormilich/network-interfaces": "^1.0",
+        "ext-simplexml": "*",
+        "ext-xml": "*",
+        "ext-xmlwriter": "*",
         "dormilich/rpsl": "@dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "^5.0"
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {
             "Dormilich\\RIPE\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Dormilich\\RIPE\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
-        "test": "vendor/bin/phpunit"
+        "test": "phpunit --testdox"
     }
 }
