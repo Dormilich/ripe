@@ -2,6 +2,8 @@
 
 namespace Dormilich\RIPE\Entity;
 
+use Dormilich\RIPE\Factory\AsDatetime;
+use Dormilich\RIPE\Factory\AsEntity;
 use Dormilich\RIPE\Primary;
 use Dormilich\RIPE\RouteInterface;
 use Dormilich\RPSL\Attribute\Presence;
@@ -19,6 +21,9 @@ use function preg_match;
  * @link https://apps.db.ripe.net/docs/RPSL-Object-Types/Descriptions-of-Primary-Objects/#description-of-the-route6-object
  * @version 1.113
  */
+#[AsDatetime('created'), AsDatetime('last-modified')]
+#[AsEntity('org')]
+#[AsEntity('mnt-by'), AsEntity('mnt-lower'), AsEntity('mnt-routes')]
 class Route6 extends Entity implements Primary, RouteInterface
 {
     /**

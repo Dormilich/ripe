@@ -2,6 +2,8 @@
 
 namespace Dormilich\RIPE\Entity;
 
+use Dormilich\RIPE\Factory\AsDatetime;
+use Dormilich\RIPE\Factory\AsEntity;
 use Dormilich\RIPE\Secondary;
 use Dormilich\RPSL\Attribute\Presence;
 use Dormilich\RPSL\Attribute\Repeat;
@@ -14,6 +16,10 @@ use Dormilich\RPSL\Entity;
  * @link https://apps.db.ripe.net/docs/RPSL-Object-Types/Descriptions-of-Secondary-Objects/#description-of-the-poem-object
  * @version 1.113
  */
+#[AsDatetime('created'), AsDatetime('last-modified')]
+#[AsEntity('author')]
+#[AsEntity('form')]
+#[AsEntity('mnt-by')]
 class Poem extends Entity implements Secondary
 {
     /**

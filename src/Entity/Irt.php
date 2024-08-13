@@ -2,6 +2,8 @@
 
 namespace Dormilich\RIPE\Entity;
 
+use Dormilich\RIPE\Factory\AsDatetime;
+use Dormilich\RIPE\Factory\AsEntity;
 use Dormilich\RIPE\Secondary;
 use Dormilich\RPSL\Attribute\Presence;
 use Dormilich\RPSL\Attribute\Repeat;
@@ -15,6 +17,10 @@ use Dormilich\RPSL\Entity;
  * @link https://apps.db.ripe.net/docs/RPSL-Object-Types/Descriptions-of-Secondary-Objects/#description-of-the-irt-object
  * @version 1.113
  */
+#[AsDatetime('created'), AsDatetime('last-modified')]
+#[AsEntity('org')]
+#[AsEntity('admin-c'), AsEntity('tech-c')]
+#[AsEntity('mnt-by'), AsEntity('mnt-ref')]
 class Irt extends Entity implements Secondary
 {
     /**
