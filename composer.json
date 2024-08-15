@@ -9,6 +9,10 @@
             "email": "Dormilich@netscape.net"
         }
     ],
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
     "repositories": [
         {
             "url": "https://github.com/Dormilich/rpsl.git",
