@@ -4,7 +4,6 @@ namespace Dormilich\RIPE\Entity;
 
 use Dormilich\RIPE\Factory\AsDatetime;
 use Dormilich\RIPE\Factory\AsEntity;
-use Dormilich\RIPE\Primary;
 use Dormilich\RIPE\RouteInterface;
 use Dormilich\RPSL\Attribute\Presence;
 use Dormilich\RPSL\Attribute\Repeat;
@@ -24,7 +23,7 @@ use function preg_match;
 #[AsDatetime('created'), AsDatetime('last-modified')]
 #[AsEntity('org')]
 #[AsEntity('mnt-by'), AsEntity('mnt-lower'), AsEntity('mnt-routes')]
-class Route6 extends Entity implements Primary, RouteInterface
+class Route6 extends Entity implements RouteInterface
 {
     /**
      * @inheritDoc

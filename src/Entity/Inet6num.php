@@ -5,7 +5,6 @@ namespace Dormilich\RIPE\Entity;
 use Dormilich\RIPE\Factory\AsDatetime;
 use Dormilich\RIPE\Factory\AsEntity;
 use Dormilich\RIPE\InetnumInterface;
-use Dormilich\RIPE\Primary;
 use Dormilich\RPSL\Attribute\Presence;
 use Dormilich\RPSL\Attribute\Repeat;
 use Dormilich\RPSL\Entity;
@@ -22,7 +21,7 @@ use Dormilich\RPSL\Entity;
 #[AsEntity('org'), AsEntity('sponsoring-org')]
 #[AsEntity('admin-c'), AsEntity('tech-c'), AsEntity('abuse-c')]
 #[AsEntity('mnt-by'), AsEntity('mnt-domains'), AsEntity('mnt-irt'), AsEntity('mnt-lower'), AsEntity('mnt-routes')]
-class Inet6num extends Entity implements Primary, InetnumInterface
+class Inet6num extends Entity implements InetnumInterface
 {
     /**
      * @inheritDoc
