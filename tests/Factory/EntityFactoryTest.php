@@ -17,7 +17,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Poem::class), UsesClass(PoeticForm::class), UsesClass(Person::class), UsesClass(Mntner::class)]
 class EntityFactoryTest extends TestCase
 {
-    #[Test, TestDox('create object from its type')]
+    #[Test, TestDox('creates an object from its type')]
     public function create()
     {
         $factory = new EntityFactory();
@@ -27,7 +27,7 @@ class EntityFactoryTest extends TestCase
         $this->assertSame('POEM-DESTINY', $poem->getHandle());
     }
 
-    #[Test, TestDox('Add transformers to an object')]
+    #[Test, TestDox('adds transformers to an object')]
     public function transformer()
     {
         $factory = new EntityFactory();
@@ -56,5 +56,15 @@ class EntityFactoryTest extends TestCase
         $this->assertInstanceOf(\DateTimeInterface::class, $poem->get('last-modified'));
         $this->assertSame('FORM-HAIKU', $poem->get('form')->getHandle());
         $this->assertSame('LIM-MNT', $poem->get('mnt-by')->getHandle());
+    }
+
+    #[Test, TestDox('fails to instantiate unknown type')]
+    public function not_found()
+    {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Object of type "test" does not exist.');
+
+        $factory = new EntityFactory();
+        $factory->create('test');
     }
 }

@@ -4,16 +4,13 @@ namespace Dormilich\RIPE\Factory;
 
 use Dormilich\RIPE\Entity;
 use Dormilich\RIPE\RipeInterface;
-use Dormilich\RPSL\FactoryInterface;
-use Dormilich\RPSL\ObjectInterface;
 use OutOfBoundsException;
 use ReflectionObject;
 
 use function array_key_exists;
-use function get_class;
 use function sprintf;
 
-class EntityFactory implements FactoryInterface
+class EntityFactory implements EntityFactoryInterface
 {
     /**
      * @var array<string, class-string<RipeInterface>>
@@ -33,14 +30,13 @@ class EntityFactory implements FactoryInterface
      */
     public function setClass(RipeInterface $object): void
     {
-        $this->types[$object->getType()] = get_class($object);
+        $this->types[$object->getType()] = $object::class;
     }
 
     /**
      * @inheritDoc
-     * @return RipeInterface
      */
-    public function create(string $type, ?string $handle = null): ObjectInterface
+    public function create(string $type, ?string $handle = null): RipeInterface
     {
         $class = $this->getClass($type);
 
